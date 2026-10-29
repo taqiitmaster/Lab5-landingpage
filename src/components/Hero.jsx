@@ -1,112 +1,15 @@
-import { useEffect, useState } from "react"
-import { AnimatePresence, motion } from "framer-motion"
-import { ArrowUpRight, Download } from "lucide-react"
-import { hero, profile, socials } from "../data/portfolioData"
-import { Icon, GithubIcon } from "./icons.jsx"
-import photo from "../assets/profile-photo.jpg"
-
-const container = { hidden: {}, show: { transition: { staggerChildren: 0.09, delayChildren: 0.1 } } }
-const item = {
-  hidden: { opacity: 0, y: 18 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] } },
-}
-
-function RoleTicker() {
-  const [i, setI] = useState(0)
-  useEffect(() => {
-    const t = setInterval(() => setI((n) => (n + 1) % hero.roles.length), 2800)
-    return () => clearInterval(t)
-  }, [])
-  return (
-    <p className="role-line" aria-live="off">
-      <span className="role-prompt" aria-hidden="true">&gt;</span>
-      <span className="role-window">
-        <AnimatePresence mode="wait">
-          <motion.span
-            key={hero.roles[i]}
-            className="role-text"
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            transition={{ duration: 0.35 }}
-          >
-            {hero.roles[i]}
-          </motion.span>
-        </AnimatePresence>
-      </span>
-      <span className="role-caret" aria-hidden="true" />
-      <span className="sr-only">{hero.roles.join(", ")}</span>
-    </p>
-  )
-}
-
-export default function Hero() {
-  return (
-    <section id="home" className="hero" data-nav="home" aria-labelledby="hero-title">
-      <div className="container hero-grid">
-        <motion.div className="hero-copy" variants={container} initial="hidden" animate="show">
-          <motion.p variants={item} className="status-pill">
-            <span className="pulse-dot" aria-hidden="true" />
-            {hero.status}
-          </motion.p>
-
-          <motion.h1 variants={item} id="hero-title">
-            <span className="hero-greeting">{hero.greeting}</span>
-            <span className="hero-headline">{hero.headline}</span>
-          </motion.h1>
-
-          <motion.div variants={item}><RoleTicker /></motion.div>
-
-          <motion.p variants={item} className="hero-intro">{hero.intro}</motion.p>
-
-          <motion.div variants={item} className="hero-actions">
-            <a href="#experience" className="btn btn-primary">Explore My Work <ArrowUpRight size={18} aria-hidden="true" /></a>
-            <a href="#contact" className="btn btn-ghost">Let&apos;s Connect</a>
-          </motion.div>
-
-          <motion.div variants={item} className="hero-links">
-            {profile.cvUrl ? (
-              <a href={profile.cvUrl} download className="text-link"><Download size={15} aria-hidden="true" /> Download CV</a>
-            ) : (
-              <span className="text-link text-link--disabled" title="CV file not added yet. See README">
-                <Download size={15} aria-hidden="true" /> CV coming soon
-              </span>
-            )}
-            <a href={socials.github} target="_blank" rel="noopener noreferrer" className="text-link">
-              <GithubIcon size={15} /> GitHub
-            </a>
-          </motion.div>
-
-          <motion.ul variants={item} className="hero-highlights" aria-label="Highlights">
-            {hero.highlights.map((h) => <li key={h}>{h}</li>)}
-          </motion.ul>
-        </motion.div>
-
-        <motion.div
-          className="portrait"
-          initial={{ opacity: 0, scale: 0.96, y: 24 }}
-          animate={{ opacity: 1, scale: 1, y: 0 }}
-          transition={{ duration: 0.9, delay: 0.25, ease: [0.22, 1, 0.36, 1] }}
-        >
-          <div className="portrait-glow" aria-hidden="true" />
-          <div className="portrait-ring" aria-hidden="true" />
-          <div className="portrait-frame">
-            <img src={photo} alt={hero.photoAlt} width="1080" height="1080" fetchpriority="high" decoding="async" />
-            <span className="portrait-shade" aria-hidden="true" />
-            <span className="portrait-corner tl" aria-hidden="true" />
-            <span className="portrait-corner tr" aria-hidden="true" />
-            <span className="portrait-corner bl" aria-hidden="true" />
-            <span className="portrait-corner br" aria-hidden="true" />
-          </div>
-          {hero.floatingCards.map((c, idx) => (
-            <div key={c.text} className={`float-card fc-${idx + 1}`}>
-              <span className="float-icon"><Icon name={c.icon} size={16} /></span>
-              {c.text}
-            </div>
-          ))}
-        </motion.div>
-      </div>
-      <a href="#about" className="scroll-cue" aria-label="Scroll to About"><span /></a>
-    </section>
-  )
-}
+import {useEffect,useState} from 'react'
+import D from '../data.js'
+export default function Hero(){const [t,setT]=useState('')
+ useEffect(()=>{let i=0,c=0,del=false,id;const f=()=>{const w=D.roles[i];setT(w.slice(0,c));if(!del&&c===w.length){del=true;id=setTimeout(f,1400);return}if(del&&c===0){del=false;i=(i+1)%D.roles.length}c+=del?-1:1;id=setTimeout(f,del?35:70)};f();return()=>clearTimeout(id)},[])
+ return <><section className="hero" style={{maxWidth:1280,margin:'auto'}}><div>
+  <span className="tag mono"><i className="dot"/>Available for work · Open to opportunities</span>
+  <h1>Hi, I’m <span className="grad">Muhammad Taqi Nayyer</span></h1>
+  <div className="sub">{t}<i/></div>
+  <p className="pitch">I build fast, beautiful, search-optimized web experiences and automate businesses with AI.</p>
+  <div className="row"><a className="btn fill mag" href="#skills">View my skills</a><a className="btn mag" href="#contact">Contact me</a><a className="btn mag" href="/Taqi_CV.pdf" download>Download CV</a></div>
+  <div className="row" style={{margin:0}}><a className="ico" href="mailto:m.taqi542@gmail.com" aria-label="Email">✉</a><a className="ico" href="tel:+923213372325" aria-label="Phone">☎</a><a className="ico" href="https://wa.me/923213372325" aria-label="WhatsApp" target="_blank" rel="noopener">💬</a></div></div>
+  <div className="frame" id="frame"><div className="ring"/><div className="ph"><img src="/taqi.jpg" alt="Portrait of Muhammad Taqi Nayyer" width="560" height="596" fetchpriority="high"/></div>
+   {[['React',{top:'8%',left:'-6%'}],['SEO',{top:'30%',right:'-8%'}],['AI',{bottom:'22%',left:'-9%'}],['Unity',{bottom:'6%',right:'-2%'}]].map(([n,s],i)=><span key={n} className="badge" style={{...s,animationDelay:-i+'s'}}>{n}</span>)}</div>
+  <div className="scroll" aria-hidden="true"/></section>
+  <div className="mq" aria-hidden="true"><div>{[...D.tech,...D.tech,...D.tech,...D.tech].map((x,i)=><span key={i}>{x}</span>)}</div></div></>}
