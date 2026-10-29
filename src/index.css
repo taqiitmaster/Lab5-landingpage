@@ -1,4 +1,3 @@
-
 :root{--bg:#000;--ink:#f4f6f8;--mute:#9aa3ad;--cy:#00e5ff;--vi:#7c3aed;--line:rgba(255,255,255,.1);--glass:rgba(255,255,255,.04);color-scheme:dark;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
 html{scroll-padding-top:80px;scroll-behavior:smooth;background:#000}
 *,*::before,*::after{box-sizing:inherit}
@@ -114,3 +113,6 @@ footer nav{position:static;padding:0;display:flex;gap:20px;background:none;color
 
 .logo{font-size:clamp(.95rem,4.2vw,1.3rem)}
 @media(max-width:860px){h1,.sub,.pitch,.head h2,.glass p,.it ul{text-shadow:0 0 12px #000,0 0 3px #000}.glass{background:rgba(0,0,0,.72)}#c3d{opacity:.9}}
+
+/* Mobile fix: the black text-shadow on h1/h2 showed through the transparent gradient text, making it unreadable */
+@media(max-width:860px){.grad{text-shadow:none}}
