@@ -67,11 +67,7 @@ export default function Hero() {
           <motion.div variants={item} className="hero-links">
             {profile.cvUrl ? (
               <a href={profile.cvUrl} download className="text-link"><Download size={15} aria-hidden="true" /> Download CV</a>
-            ) : (
-              <span className="text-link text-link--disabled" title="CV file not added yet. See README">
-                <Download size={15} aria-hidden="true" /> CV coming soon
-              </span>
-            )}
+            ) : null}
             <a href={socials.github} target="_blank" rel="noopener noreferrer" className="text-link">
               <GithubIcon size={15} /> GitHub
             </a>
