@@ -3,6 +3,23 @@ import { AnimatePresence, motion } from "framer-motion"
 import { Menu, X } from "lucide-react"
 import { navItems, profile } from "../data/portfolioData"
 
+/* Live local time in Lahore: small, quiet "this is a real person" detail. */
+function LocalTime() {
+  const fmt = () =>
+    new Intl.DateTimeFormat("en-GB", { hour: "2-digit", minute: "2-digit", timeZone: "Asia/Karachi" }).format(new Date())
+  const [t, setT] = useState(fmt)
+  useEffect(() => {
+    const id = setInterval(() => setT(fmt()), 30000)
+    return () => clearInterval(id)
+  }, [])
+  return (
+    <span className="nav-clock" aria-label={`Local time in Lahore: ${t}`}>
+      <span className="pulse-dot" aria-hidden="true" />
+      Lahore {t}
+    </span>
+  )
+}
+
 export default function Navbar({ active }) {
   const [open, setOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
@@ -31,12 +48,18 @@ export default function Navbar({ active }) {
         <nav className="nav-links" aria-label="Primary">
           {navItems.map((n) => (
             <a key={n.id} href={`#${n.id}`} className={active === n.id ? "is-active" : ""} aria-current={active === n.id ? "true" : undefined}>
-              {n.label}
+              {active === n.id && (
+                <motion.span layoutId="nav-pill" className="nav-pill" transition={{ type: "spring", stiffness: 420, damping: 36 }} />
+              )}
+              <span className="nav-label">{n.label}</span>
             </a>
           ))}
         </nav>
 
-        <a href="#contact" className="btn btn-primary btn-sm nav-cta">Let&apos;s Talk</a>
+        <div className="nav-right">
+          <LocalTime />
+          <a href="#contact" className="btn btn-primary btn-sm nav-cta">Let&apos;s Talk</a>
+        </div>
 
         <button
           className="nav-toggle"
