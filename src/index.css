@@ -111,3 +111,6 @@ footer nav{position:static;padding:0;display:flex;gap:20px;background:none;color
 @media(hover:hover) and (pointer:fine){#cur,#cur2{display:block}body,a,button{cursor:none}}
 @media(max-width:860px){.links,nav>.btn{display:none}#burger{display:block}.hero,.two{grid-template-columns:1fr}.hero{padding-top:100px;text-align:left}.frame{width:min(78%,340px)}.scroll{display:none}section{padding-block:80px}}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.rv,.sk .glass{opacity:1;transform:none}#c3d{display:none}}
+
+.logo{font-size:clamp(.95rem,4.2vw,1.3rem)}
+@media(max-width:860px){h1,.sub,.pitch,.head h2,.glass p,.it ul{text-shadow:0 0 12px #000,0 0 3px #000}.glass{background:rgba(0,0,0,.72)}#c3d{opacity:.9}}
