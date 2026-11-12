@@ -54,7 +54,7 @@ export function Navbar() {
             <span className="meta hidden items-center gap-2 text-g-400 sm:flex" aria-live="polite">
               <span className="h-px w-6 bg-g-600" />
               <AnimatePresence mode="wait" initial={false}>
-                <motion.span key={active.id} initial={{ y: 8, opacity: 0 }} animate={{ y: 0, opacity: 1 }} exit={{ y: -8, opacity: 0 }} transition={{ duration: 0.25 }}>
+                <motion.span key={active.id} className="whitespace-nowrap" initial={{ y: 8, opacity: 0 }} animate={{ y: 0, opacity: 1 }} exit={{ y: -8, opacity: 0 }} transition={{ duration: 0.25 }}>
                   {active.index} / {active.label}
                 </motion.span>
               </AnimatePresence>

@@ -36,6 +36,15 @@ black over the white inphint section by itself (`mix-blend-mode: difference`).
 chronological order: Hero → Premise → Education → Experience → inphint → Skills
 → Certifications → Contact. Nav is Home · Skills · Education · Contact.
 
+## 05 / Process — the 3D build (`src/components/BuildScene.jsx`)
+
+A sticky, scroll-driven three.js scene: a browser window and a phone assemble
+from wireframe into solid panels, split into their layers, then lock back
+together, finished. Monochrome only. three.js is code-split (loaded only when
+this section mounts), rendering pauses off-screen, pixel ratio is capped for
+phones. Reduced-motion users get the finished state; no-WebGL browsers get a
+flat SVG drawing. Framing is tuned for 1440, 1280, 1024, tablets and phones.
+
 ## Security
 
 - **Content Security Policy**: `'self'` only. No inline scripts, no eval,

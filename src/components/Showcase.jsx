@@ -5,12 +5,12 @@ import { useScrollLock } from '../lib/hooks.js'
 import { EASE, IndexLabel, MaskLines, Reveal, Rule } from '../ui/Motion.jsx'
 import { ext } from './Chrome.jsx'
 
-/* ---------- 05 / INPHINT — inverted: the one white section ---------- */
+/* ---------- 06 / INPHINT — inverted: the one white section ---------- */
 export function Inphint() {
   return (
     <section id="inphint" className="relative bg-paper py-28 text-ink lg:py-40">
       <div className="frame">
-        <IndexLabel index="05" label="The company" dark />
+        <IndexLabel index="06" label="The company" dark />
         <div data-line="rocket" className="mt-10 grid gap-10 lg:grid-cols-12 lg:items-end lg:gap-6">
           <div className="lg:col-span-8">
             <MaskLines as="h2" lines={['inphint']} className="font-display text-[clamp(4.5rem,17vw,16rem)] font-bold leading-[0.8] tracking-[-0.07em]" />
@@ -50,7 +50,7 @@ export function Inphint() {
   )
 }
 
-/* ---------- 06 / SKILLS — a specification sheet, not skill bars ---------- */
+/* ---------- 07 / SKILLS — a specification sheet, not skill bars ---------- */
 export function Skills() {
   const reduce = useReducedMotion()
   const total = SKILLS.reduce((n, g) => n + g.items.length, 0)
@@ -59,7 +59,7 @@ export function Skills() {
       <div className="frame">
         <div className="flex flex-wrap items-end justify-between gap-6">
           <div>
-            <IndexLabel index="06" label="Skills" />
+            <IndexLabel index="07" label="Skills" />
             <MaskLines lines={['Specification.']} className="display-xl mt-8 text-paper" />
           </div>
           <p className="meta tabular text-g-400">{total} entries / {SKILLS.length} groups</p>
@@ -90,7 +90,7 @@ export function Skills() {
   )
 }
 
-/* ---------- 07 / CERTIFICATIONS ---------- */
+/* ---------- 08 / CERTIFICATIONS ---------- */
 function Lightbox({ index, onClose, onStep }) {
   const c = CERTIFICATES[index]
   useScrollLock(true)
@@ -134,7 +134,7 @@ export function Certifications() {
       <div className="frame">
         <div className="flex flex-wrap items-end justify-between gap-6">
           <div>
-            <IndexLabel index="07" label="Certifications" />
+            <IndexLabel index="08" label="Certifications" />
             <MaskLines lines={['Certified.']} className="display-xl mt-8 text-paper" />
           </div>
           <p className="meta tabular max-w-xs text-g-400">{CERTIFICATES.length} certificates · Google &amp; Coursera · each one verifiable</p>

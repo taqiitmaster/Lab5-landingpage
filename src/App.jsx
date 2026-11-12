@@ -6,11 +6,12 @@ import Hero from './components/Hero.jsx'
 import { About, Education, Experience } from './components/Story.jsx'
 import { Certifications, Inphint, Skills } from './components/Showcase.jsx'
 import Contact from './components/Contact.jsx'
+import BuildScene from './components/BuildScene.jsx'
 
 /**
  * One page, one scroll. Sections run in the order of the story the line tells:
  * hero → premise → education (DNA, blueprint, code) → experience (nodes) →
- * inphint (the launch) → skills → certifications → contact (the endpoint).
+ * process (a site assembles in 3D) → inphint (the launch) → skills → certifications → contact (the endpoint).
  */
 export default function App() {
   const pageRef = useRef(null)
@@ -46,6 +47,7 @@ export default function App() {
         <About />
         <Education />
         <Experience />
+        <BuildScene />
         <Inphint />
         <Skills />
         <Certifications />

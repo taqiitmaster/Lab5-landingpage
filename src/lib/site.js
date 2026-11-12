@@ -32,10 +32,11 @@ export const SECTIONS = [
   { id: 'about', index: '02', label: 'Premise' },
   { id: 'education', index: '03', label: 'Education' },
   { id: 'experience', index: '04', label: 'Experience' },
-  { id: 'inphint', index: '05', label: 'inphint' },
-  { id: 'skills', index: '06', label: 'Skills' },
-  { id: 'certifications', index: '07', label: 'Certifications' },
-  { id: 'contact', index: '08', label: 'Contact' },
+  { id: 'process', index: '05', label: 'Process' },
+  { id: 'inphint', index: '06', label: 'inphint' },
+  { id: 'skills', index: '07', label: 'Skills' },
+  { id: 'certifications', index: '08', label: 'Certifications' },
+  { id: 'contact', index: '09', label: 'Contact' },
 ]
 
 export const ROLES = ['Front-end developer', 'SEO specialist', 'Founder, inphint', 'CS undergrad']

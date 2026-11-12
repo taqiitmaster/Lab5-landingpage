@@ -39,9 +39,9 @@ function RoleTyper() {
 }
 
 /**
- * Portrait: shown first as a 1-bit dither, then the photograph wipes up over it,
- * so the image "resolves" as the page loads. Both layers are greyscale, so the
- * page never shows a colour photo.
+ * Portrait: shown first as a 1-bit black-and-white dither, then the full-colour
+ * photograph wipes up over it, so the image "resolves" from print into life as
+ * the page loads. It is the one piece of colour on an otherwise monochrome page.
  */
 function Portrait() {
   const reduce = useReducedMotion()
@@ -53,7 +53,7 @@ function Portrait() {
       <motion.div style={{ y }} className="absolute inset-[-6%_0]">
         <img src={PORTRAIT.dither} alt="" aria-hidden="true" className="absolute inset-0 h-full w-full object-cover [image-rendering:pixelated]" />
         <motion.img src={PORTRAIT.src} srcSet={PORTRAIT.srcSet} sizes="(min-width: 1024px) 34vw, 90vw" width={PORTRAIT.width} height={PORTRAIT.height}
-          alt="Muhammad Taqi Nayyer in a navy double-breasted suit, photographed at night in black and white" fetchpriority="high"
+          alt="Muhammad Taqi Nayyer in a navy double-breasted suit, photographed at night in Lahore" fetchpriority="high"
           className="absolute inset-0 h-full w-full object-cover"
           initial={reduce ? false : { clipPath: 'inset(100% 0 0 0)' }} animate={{ clipPath: 'inset(0% 0 0 0)' }}
           transition={{ duration: 1.5, delay: 0.7, ease: [0.65, 0, 0.35, 1] }} />
@@ -94,7 +94,8 @@ export default function Hero() {
             <Portrait />
           </div>
 
-          <h1 className="display-hero relative z-10 text-paper lg:absolute lg:left-0 lg:top-14 lg:w-full" style={{ mixBlendMode: 'difference' }}>
+          {/* Plain white (no blend): a difference blend over the colour photo would tint the letters. The night photo is dark enough to carry white type. */}
+          <h1 className="display-hero relative z-10 text-paper lg:absolute lg:left-0 lg:top-14 lg:w-full">
             <span className="sr-only">{PERSON.name}</span>
             {nameLines.map((l, i) => (
               <span key={l} aria-hidden="true" className="block overflow-hidden pb-[0.04em]">

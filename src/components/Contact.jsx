@@ -20,7 +20,7 @@ export default function Contact() {
   return (
     <section id="contact" className="relative pb-16 pt-28 lg:pt-40">
       <div className="frame">
-        <IndexLabel index="08" label="Contact" />
+        <IndexLabel index="09" label="Contact" />
         <div data-line="end">
           <MaskLines lines={['Let’s build', 'something.']} className="display-hero mt-10 normal-case text-paper" />
         </div>
