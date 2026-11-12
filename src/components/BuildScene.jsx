@@ -160,7 +160,12 @@ export default function BuildScene() {
       let eased = progress.current
       const frame = () => {
         if (disposed) return
-        eased += (progress.current - eased) * 0.1
+        // Ease towards the scroll position, but snap when the section isn't pinned
+        // or after a fast flick, so nothing lingers on screen while the
+        // section slides in or out (this showed up on phones scrolling back up).
+        const target = progress.current
+        if (target <= 0 || target >= 1 || Math.abs(target - eased) > 0.2) eased = target
+        else eased += (target - eased) * 0.14
         const p = clamp01(eased)
         const e = explodeAt(p)
         const lit = smooth(clamp01((p - 0.86) / 0.1))
@@ -200,7 +205,7 @@ export default function BuildScene() {
 
   return (
     <section id="process" ref={sectionRef} className={`relative ${reduce ? '' : 'h-[260svh] lg:h-[300vh]'}`}>
-      <div className={`sticky top-0 h-[100svh] overflow-hidden ${reduce ? 'h-auto min-h-[100svh] py-24' : ''}`}>
+      <div className={`sticky top-0 overflow-hidden ${reduce ? 'min-h-[100svh] py-24' : 'h-[100svh] supports-[height:100dvh]:h-[100dvh]'}`}>
         <div className="absolute inset-0">
           {webgl === true && <canvas ref={canvasRef} aria-hidden="true" className={`h-full w-full transition-opacity duration-700 ${ready ? 'opacity-100' : 'opacity-0'}`} />}
           {webgl === false && <StaticWireframe />}
